@@ -2,23 +2,53 @@ package com.jetprogramming.products;
 
 import java.util.List;
 
-import javax.jws.WebMethod;
 import javax.jws.WebService;
 
+import com.jetprogramming.products.business.Product;
 import com.jetprogramming.products.business.ProductServiceImpl;
 
-@WebService(name = "Catalog", portName = "CatalogPort", serviceName = "CatalogService"
-		, targetNamespace = "com.jetprogramming")
-public class ProductCatalog {
+@WebService(endpointInterface = "com.jetprogramming.products.IProductCatalog")
+public class ProductCatalog implements IProductCatalog {
 
 	ProductServiceImpl productService = new ProductServiceImpl();
 
-	@WebMethod
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.jetprogramming.products.IProductCatalog#getProducts()
+	 */
+	@Override
 	public List<String> getProducts() {
 		return productService.getProducts();
 	}
 
-	@WebMethod
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.jetprogramming.products.IProductCatalog#getCatalog()
+	 */
+	@Override
+	public List<String> getCatalog() {
+		return productService.getProducts();
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.jetprogramming.products.IProductCatalog#getProductsComplex()
+	 */
+	@Override
+	public List<Product> getProductsComplex() {
+		return productService.getProductsComplex();
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.jetprogramming.products.IProductCatalog#getProductsVy(java.lang.
+	 * String)
+	 */
+	@Override
 	public List<String> getProductsVy(String product) {
 		return productService.getProducts();
 	}
